@@ -1,0 +1,49 @@
+Affected Tables 
+--------------------
+- student 
+- student_batch 
+- notification 
+- user_session
+
+parent 
+--------------------
+- first_name
+- last_name
+- gender
+- email
+- phone_no
+- whatsapp_no
+- password 
+- spouse_first_name
+- spouse_last_name
+- spouse_no
+- spouse_gender
+- spouse_whatsapp_no
+- spouse_password (Nullable)
+- spouse_verified
+
+student (child)
+-------------------
+- parent_id (F.K) 
+- gender 
+- state
+- city
+- academic_year
+
+Remove Fields
+- mobile_number
+- password
+- parent_secondary_number
+- is_parent_verified
+- parent_primary_number
+
+
+class_attendance 
+------------------
+- class_id (F.K) 
+- teacher_id (F.K)
+- status ENUM(0,1)  Default (0) (0-pending , 1-submitted)
+- status Nullable (ENUM) (0-present , 1-absent , 2-leave)
+- created_at 
+- updated_at  
+

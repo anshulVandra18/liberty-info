@@ -1,0 +1,67 @@
+version: '3.8'
+x-logging: &my-logging
+  options:
+    max-size: '100m'
+    max-file: '2'
+services:
+  reactjs-morluxury-web-app:
+    # deploy:
+    #     resources:
+    #         limits:
+    #           cpus: '0.50'
+    #           memory: 512M
+    #         reservations:
+    #           cpus: '0.25'
+    #           memory: 128M
+    image: $regurl/reactjs-morluxury-web-app/reactjs-morluxury-web-app:latest
+    hostname: reactjs-morluxury-web-app
+    container_name: reactjs-morluxury-web-app
+    logging: *my-logging
+    # volumes:
+    #    #- reactjs-morluxury-web-app:/wp-content/uploads //wordpress
+    #    - reactjs-morluxury-web-app:/var/www/html
+    #    - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    #    - ./wp-config.php:/var/www/html/wp-config.php
+    #    - ./.htaccess:/var/www/html/.htaccess
+    networks:
+      #- default
+      - reactjs-morluxury-web-app
+    ############Not Working#######
+    # networks:
+    #   reactjs-morluxury-web-app:
+    #     ipv4_address: "20.0.0.18"
+    ############################
+    ports:
+      - 7231:7231
+    ## aaplication .env file
+    ##env_file: /opt/ENVIRONMENT/.env
+#######################################
+# Networks: A default used by all container using bridge
+#######################################
+networks:
+  reactjs-morluxury-web-app:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 20.0.3.104/29
+          ip_range: 20.0.3.105/29
+          gateway: 20.0.3.105
+          #aux_addresses:
+          #reactjs-morluxury-web-app: 20.0.0.18
+          ##host2: 172.28.1.6
+          ##host3: 172.28.1.7
+  ################not working############
+# volumes:
+#   reactjs-morluxury-web-app:
+#       driver: local
+#       driver_opts:
+#         type: volume
+#         device: /opt/DockerHomeNAS/MediaFiles/reactjs-morluxury-web-app
+#         o: bind
+#test:
+#   driver: local
+#   driver_opts:
+#     type: volume
+#     device: /opt/DockerHomeNAS/MediaFiles/node/src
+#     o: bind

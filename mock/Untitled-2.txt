@@ -1,0 +1,68 @@
+1) NEET 
+
+MAKING INDESIGN 
+
+----------------------------------------
+//FIRST-PAGE
+//SUB-Physics-180-OPTIONAL-36-50-10 out of 15
+//SUB-Chemistry-180-OPTIONAL-86-100-10 out of 15
+//SUB-Biology-360-OPTIONAL-136-150-10 out of 15
+//SUB-Maths-180-OPTIONAL-186-200-10 out of 15
+//CORRECT-4
+
+
+//M4//QN1//Chemistry
+
+//ENGLISH
+//QUE
+{question text}
+//OP1A-{option text}
+//OP1B-{option text}
+//OP1C-{option text}
+//OP1D-{option text}
+
+//GUJARATI
+//QUE
+{question text}
+//OP1A-{option text}
+//OP1B-{option text}
+//OP1C-{option text}
+//OP1D-{option text}
+
+//X
+//OP1C
+---------------------------------------
+
+
+2) GUJCET
+---------------------------------------
+
+//FIRST-PAGE
+//SUB-Physics-40
+//SUB-Chemistry-40
+//SUB-Biology-40
+or 
+//SUB-Maths-40
+
+//M4//QN1//Chemistry
+
+//ENGLISH
+//QUE
+{question text} 
+//OP1A-{option text}
+//OP1B-{option text}
+//OP1C-{option text}
+//OP1D-{option text}
+
+//GUJARATI
+//QUE
+{question text}
+//OP1A-{option text}
+//OP1B-{option text}
+//OP1C-{option text}
+//OP1D-{option text}
+
+//X
+//OP1C
+---------------------------------------
+

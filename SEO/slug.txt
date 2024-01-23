@@ -1,0 +1,27 @@
+
+- Home => component
+=> "/" [index.js]
+
+- Service => [[...service]]
+=> "/ac-services"
+
+    - Sub-Service [[...service]]
+=> "/ac-services/ac-gas-filling"
+
+- City [[...city]]
+=> "/Mumbai"
+
+- city + Area [[...city]]
+=> "/mumbai/shivranjani"
+
+- City + Service (provider) [[...cityService]]
+=> "/mumbai/ac-services"  => no
+
+- Area + Service [[...areaService]]
+=> "/mumbai/shivranjani/ac-services"
+
+Area + Service + Sub-Service (sub-provider) [[...areaService]]
+=> "/mumbai/shivranjani/ac-services/ac-gas-filling"
+
+- City + Service + Sub-Service [[...cityService]]
+=> "/mumbai/ac-services/ac-gas-filling"

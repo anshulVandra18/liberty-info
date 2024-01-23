@@ -1,0 +1,27 @@
+{
+  "GSEB": {
+    "10": {
+      "subject": {
+        "Maths": {},
+        "Science": {},
+        "Social_Science": {}
+      }
+    },
+    "11": {
+      "subject": {
+        "Maths": {},
+        "Chemistry": {},
+        "Physics": {},
+        "Biology": {}
+      }
+    },
+    "12": {
+      "subject": {
+        "Maths": {},
+        "Chemistry": {},
+        "Physics": {},
+        "Biology": {}
+      }
+    }
+  }
+}

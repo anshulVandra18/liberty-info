@@ -1,0 +1,67 @@
+1) Admin Fields 
+
+- Test Type (JEE / NEET / GUJCET)
+- Test Language ( ENglish , Gujrati , Hindi )
+- Test Name (Text Field)
+- Total Marks ( Text Field )
+- Test Start Date and TIme ( Date TIme )
+- Test End Date and TIme ( Date TIme )
+- Test duration 2 : 30
+- Test FIle (Zip Upload Button) 
+
+
+2) In-design format
+
+//FIRST-PAGE
+//PHY-180,CHEM-180,BIO-360,MATH-180 (First Page)
+
+//M4//QN1//CHEM
+
+//ENGLISH
+//QUE
+{question text}
+//OP1A
+//OP1B
+//OP1C
+//OP1D
+
+//GUJARATI
+//QUE
+{question text}
+//OP1A
+//OP1B
+//OP1C
+//OP1D
+
+//X
+//OP1C
+
+//M4//QN1//PHY
+//M4//QN1//BIO
+//M4//QN1//MATH
+
+3) Scrapping
+
+- Create a new Div for each question and answer
+- For each mcq option we will add new span containing unique ID and we will also add data-attribute for correct answer 
+- By Default all questions will be hidden 
+- React native will pass question_id to display single question root at a time 
+    eg: 
+    displayQuestion(question_id, selected_answer , language,is_disabled=true/false)
+    3 Parameter 
+    
+- if there's no selected answer then react native will pass "" empty string otherwise selected answer's id
+- Third optional parameter to make answer selection disable 
+
+4) Scripting 
+- on the click of radio button we will pass event to react native 
+    eg  answerSelected(question_number,answer_selected)
+
+Interaction between React Native and WEB
+
+1) saveAndNext(question_root_id)  native -> web 
+    - When user presses save and next button mobile will inform webview (Basically at this time JSON needs to be updated with selected answer)
+2) displayQuestion(question_root_id , selected_answer , language ) native -> web
+    - Whenever user change the question or question's language
+3) answerSelected(question_root_id , selected_answer ) web -> native
+    - To give back selected answer to react native

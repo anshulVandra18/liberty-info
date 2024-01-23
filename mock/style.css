@@ -1,0 +1,25 @@
+#PARENT_ROOT {
+  background-color: aliceblue;
+  width: 100%;
+}
+
+#QUE_ROOT_1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.ANS_ROOT {
+  display: flex;
+  align-items: center;
+  margin: -10px 0;
+}
+
+.que_no {
+  font-weight: bolder;
+  color: rgb(2, 2, 123);
+}
+
+.question {
+  display: contents;
+  color: rgb(0, 0, 151);
+}

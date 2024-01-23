@@ -1,0 +1,35 @@
+Create [AP - Mock Test Paper]
+
+Request
+
+- type\* (JEE / NEET / GUJCET)
+- title\* (Text Field)
+- language\* ( ENglish , Gujrati , Hindi )
+- duration\* "2 : 30"
+- total_marks\* int
+- start_Date\* ( UTC )
+- end_Date\* ( UTC )
+- test_file\* file (single)
+- answer_pdf
+
+List [AP - xx`Mock Test Paper]
+Detail [AP - Mock Test Paper]
+
+Request
+
+- page
+- limit
+- search
+
+List [SA - Mock Test Paper]
+
+Request
+
+- type\* : 0-closed | 1-current | 2-upcoming
+- page : int
+- limit : int
+- filter : { year }
+
+Response
+
+- student wise status (Attempted)

@@ -1,0 +1,35 @@
+- Test Type (JEE / NEET / GUJCET)
+- Test Language ( ENglish , Gujrati , Hindi )
+- Test Title (Text Field)
+- Total Marks ( Text Field )
+- Test Start Date and TIme ( Date TIme )
+- Test End Date and TIme ( Date TIme )
+- Test duration 2 : 30
+- Test File (Zip Upload Button) //zip only
+- Answer PDF File //Nullable
+
+tbl_mock_test {
+	id integer pk increments
+	type varchar
+	title varchar
+	total_marks integer
+	duration text
+	languages JSONB // ["English","Gujarati"]
+	test_json JSONB // nullable
+	start_date timestamp
+	end_date timestamp
+	zip_url varchar //nullable
+    answer_pdf varchar //nullable
+}
+
+tbl_mock_test_student {
+	id integer pk increments
+	student_id integer > undefined.undefined
+	mock_test_id integer > tbl_mock_test.id
+	test_start_time timestamp
+	result_json JSONB
+	marks integer
+	time_taken text
+	created_at timestamp
+	updated_at timestamp
+}

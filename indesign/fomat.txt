@@ -1,0 +1,54 @@
+1) Normal questions 
+
+//M1//QN1//MCQ//DL0//PYQ//EQ//JEE//NEET
+
+First: //M1
+M1 = 1 Mark question
+M2 = 2 Mark question
+M3 = 3 Mark question
+M4 = 4 Mark question
+M5 = 5 Mark question
+
+Second: //QN1
+QN = Question Number
+
+Third: //QTM
+MCQ = Question Type MCQ
+TF = Question Type True/False
+FB = Question Type Fill in the blanks
+OW = Question Type One word OR One Sentense
+MT = Question Type Matching
+SUB = All the subjective questions
+
+Fourth: //DL0
+DL0 = Difficulty level easy
+DL1 = Difficulty level medium
+DL2 = Difficulty level hard
+
+//For below sequence does not matter
+
+//PYQ
+If any question in previous year board
+
+//EQ
+If any question in exercise question
+
+//JEE 
+If any question in JEE
+
+//NEET 
+If any question in exercise question
+
+//NI
+Specifically for previous year question section  
+if it's included in above sections 
+
+2) Repeat questions indesign
+
+//M1//QN29R//SUB//DL0//PYQ//EQ//JEE//NEET
+29) what is electricity ?
+29) How do you define the electricity ?
+//X
+answer lorem ipsum dolor sit amet
+
+

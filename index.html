@@ -1,0 +1,368 @@
+const fs = require("fs");
+const cheerio = require("cheerio");
+const async = require("async");
+const fsExtra = require("fs-extra");
+
+const basePath = "./input/Maths_EM/";
+
+const sectionFileArr = [
+  "CHAPTER-1/1C01S01/1C01S01_ILCSS.html",
+  "CHAPTER-1/1C01S02/1C01S02_ILCSS.html",
+  "CHAPTER-2/1C02S01/1C02S01_ILCSS.html",
+  "CHAPTER-2/1C02S02/1C02S02_ILCSS.html",
+];
+
+const headerHTML = `<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <title>NEW_1C01S01_EM</title>
+    <style>
+
+    *{
+        font-size: 18px !important;
+    }
+    .accordionTitle + .accordionContent , .secinner + .queinner {
+      display: none;
+    }
+    
+    .accordionTitle.is-open + .accordionContent {
+      display: block;
+    }
+
+    .root-section-accordion .secinner , .root-accordion .accordionTitle{
+      background-color:#D9D9D9;
+      padding:12px 16px;
+      border:1px solid #D9D9D9;
+    }
+    .root-section-accordion , .queinner{
+      padding:16px;
+      border:1px solid #D9D9D9;
+      border-top:none;
+    }
+    .selected{
+      transform: rotate(0deg);
+    }
+
+</style>
+
+</head>
+<body id="x1C01S01" labg="en-US">
+    <div>
+        <button id="generate_pdf_btn" onclick="sendData()"
+            style="display: block; margin: 10px 20px 10px auto; background-color: lightblue; border: 1px solid black; height: 50px; width: 100px; font-size: 20px;">Generate</button>
+        <button id="edit_btn" onclick="edit_btn()"
+        style="display: none; margin: 10px 20px 10px auto; background-color: lightblue; border: 1px solid black; height: 50px; width: 100px; font-size: 20px;">Edit</button>
+    </div>
+    <div id="selectedValues" style="display: none;"></div>
+    <div class="main-body">
+    <script>
+        function show_chapter(chapterIds){
+            if(chapterIds.length){
+                chapterIds.forEach((cId)=>{
+                    document.getElementById(cId).style.display = "";
+                });
+            }
+        }
+        function edit_btn() {
+            const edit_btn = document.getElementById('edit_btn');
+            edit_btn.style.display = "none";
+
+            const selected_div = document.getElementById('selected_chapter');
+            selected_div.style.display = "none";
+
+            const mainDiv = document.querySelector('.main-body');
+            mainDiv.style.display = "";
+
+            const generate_pdf_btn = document.getElementById('generate_pdf_btn');
+            generate_pdf_btn.style.display = "block";
+        }
+        function sendData() {
+            const selectedValuesContainer = document.getElementById('selectedValues').innerHTML;
+
+            const mainDiv = document.querySelector('.main-body');
+            mainDiv.style.display = "none";
+
+            const generate_pdf_btn = document.getElementById('generate_pdf_btn');
+            generate_pdf_btn.style.display = "none";
+
+            const edit_btn = document.getElementById('edit_btn');
+            edit_btn.style.display = "block";
+
+            let exiting_selected_div = document.getElementById('selected_chapter');
+
+            if (exiting_selected_div) {
+                exiting_selected_div.remove();
+            }
+
+            let newDiv = document.createElement("div");
+            newDiv.id = 'selected_chapter';
+            newDiv.innerHTML = selectedValuesContainer;
+
+            // Append the new <div> element to the same container
+            mainDiv.parentNode.appendChild(newDiv);
+
+            window.postMessage(selectedValuesContainer)
+            console.log("Postmessage Sent", selectedValuesContainer);
+        }
+        function getSelectedCheckboxValues() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const selectedValues = [];
+            selectedValues.push('<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta charset="utf-8"><title>NEW_1C01S01_(EM)</title></head><body>')
+
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    // Get question id
+                    // selectedValues.push(checkbox.id);
+                    // Get full question
+                    // selectedValues.push(checkbox.nextElementSibling.textContent.trim());
+                    // Get HTML P TAGS
+                    selectedValues.push(checkbox.nextElementSibling.innerHTML);
+                    checkbox.parentNode.style.backgroundColor = "lightblue";
+                } else {
+                    checkbox.parentNode.style.backgroundColor = "";
+                }
+            });
+            selectedValues.push('</body></html>');
+            const selectedValuesContainer = document.getElementById('selectedValues');
+            selectedValuesContainer.innerHTML = selectedValues.join('');
+        }
+
+        // accordion
+          
+        // root-node
+        document.addEventListener('DOMContentLoaded', function() {
+          const accordionHeaders = document.querySelectorAll('.accordionTitle');
+          
+          accordionHeaders.forEach((header,index) => {
+            header.addEventListener('click', function() {
+
+              let elements = document.getElementsByClassName("queinner");
+              let a = document.getElementsByClassName("accordionArrow");
+              const content = this.nextElementSibling;
+        
+              for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "none";
+              }
+              
+              // arrow class add and remove
+
+              for (var i = 0; i < a.length; i++) {
+                a[i].style.transform = 'rotate(0deg)';
+              } 
+
+              const arrowElements = document.getElementsByClassName("accordionArrow");
+
+              arrowElements[index].style.transform = 'rotate(90deg)';
+             
+        
+              // Check if content is not null or undefined
+              if (content) {
+                // Hide content of all sections
+        
+                accordionHeaders.forEach((otherHeader) => {
+        
+                  const otherContent = otherHeader.nextElementSibling;
+                  if (otherContent !== content) {
+                    otherContent.style.display = 'none';
+                  }
+                });
+        
+                // Toggle the display of the clicked section's content
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+              }
+            });
+          });
+        });
+        
+
+
+        
+        // child-node
+        document.addEventListener('DOMContentLoaded', function() {
+          const accordionHeaders = document.querySelectorAll('.secinner');
+        
+          accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+              const contents = this.nextElementSibling;
+        
+              // Check if content is not null or undefined
+              if (contents) {
+                // Hide content of all sections
+                accordionHeaders.forEach(otherHeader => {
+                  let otherContents = otherHeader.nextElementSibling;
+                  if (otherContents !== contents) {
+                    otherContents.style.display = 'none';
+                  }
+                });
+        
+                // Toggle the display of the clicked section's content
+                contents.style.display = contents.style.display === 'block' ? 'none' : 'block';
+              }
+            });
+          });
+        });
+
+
+    </script>
+    `;
+
+let bodyHTML = "";
+
+const footerHTML = `</div>
+
+</body></html>`;
+
+const imageFolderPathArr = [];
+
+let currentChapterNo = "";
+
+async.mapSeries(
+  sectionFileArr,
+  (sectionFile, nextItem) => {
+    let chapterNo = sectionFile.split("/")[1].substring(1, 4);
+    let sectionNo = sectionFile.split("/")[1].substring(4, 7);
+    let getResorceFolderPath = sectionFile.split("/");
+    getResorceFolderPath.pop();
+    getResorceFolderPath.push(`${getResorceFolderPath[1]}-web-resources`);
+    getResorceFolderPath = getResorceFolderPath.join("/");
+    let getHtmlContent = fs.readFileSync(`${basePath}${sectionFile}`, "utf-8");
+    const $ = cheerio.load(getHtmlContent);
+    let finalArr = [];
+    if (currentChapterNo != chapterNo) {
+      bodyHTML += `<div id="PHY_EM_${chapterNo}" class="root-accordion"  style="display:block;">`;
+      bodyHTML += `<div id="btnclick" class="accordionTitle" style="background-color: yellow;"> <i style= "display:inline-block;" class="accordionArrow" > > </i> Chapter ${chapterNo}</div>`;
+      bodyHTML += `<div id="PHY_EM_${chapterNo}_SECTION_ROOT" class="accordionContent root-section-accordion">`;
+      currentChapterNo = chapterNo;
+    }
+
+    // let tmpArr = `<div style="background-color:red;">Section ${sectionNo}</div>`;
+    let tmpArr = ``;
+    let imageFolderPath = {
+      oldFolderPath: basePath + getResorceFolderPath,
+      newFolderPath:
+        "./output/12th_Maths_EM/resources/" +
+        chapterNo +
+        "_" +
+        sectionNo +
+        "/image",
+    };
+    imageFolderPathArr.push(imageFolderPath);
+
+    $("p img").each((index, element) => {
+      const imgTag = $(element);
+
+      /**
+       * Change image src start
+       */
+      const oldPath = imgTag.attr("src");
+      let newPath = oldPath.split("/");
+      newPath.shift();
+      newPath.unshift("resources/" + chapterNo + "_" + sectionNo);
+      newPath = newPath.join("/");
+      imgTag.attr("src", newPath);
+      /**
+       * Change image src end
+       */
+    });
+
+    $("p").each((index, element) => {
+      let fullPTag = $.html(element);
+      if (
+        $(element).text().startsWith("//") &&
+        !$(element).text().startsWith("//X") &&
+        !$(element).text().startsWith("//B") &&
+        !$(element).text().startsWith("//C") &&
+        !$(element).text().startsWith("//D") &&
+        !$(element).text().startsWith("//A")
+      ) {
+        let que_unique_id = $(element).text().split("\t"); // Convert string to arrays
+        let fomatted_que_id =
+          que_unique_id[0].replace("//", "M") +
+          "_" +
+          que_unique_id[1].replace("//", "S"); // Make quesion id
+        index > 0 && (tmpArr += "</label></div>");
+        finalArr.push(tmpArr);
+        tmpArr = `<div id="${fomatted_que_id}_div" class="innerQueRoot" >`;
+        tmpArr += `<input type="checkbox" onclick="getSelectedCheckboxValues()" id="${fomatted_que_id}">`;
+
+        // ---------- changes sahil ------
+
+        const mark = que_unique_id[0].replace("//", "");
+        tmpArr += `<label for="${fomatted_que_id}"><span class="_marks mark_${mark}" style="font-size: 25px;margin-left: auto;float: right;">(${que_unique_id[0].replace(
+          "//",
+          ""
+        )})</span>`;
+        !$(element).text().startsWith("//") && (tmpArr += fullPTag);
+      } else {
+        // Push only question
+        !$(element).text().startsWith("//") &&
+          !$(element).hasClass("Quest-copy") &&
+          (tmpArr += fullPTag);
+        // Push question with answer
+        // (!$(element).text().startsWith('//')) && (tmpArr += fullPTag);
+        $("p").length - 1 === index && finalArr.push(tmpArr);
+      }
+      // if ($(element).text().startsWith('//') && !$(element).text().startsWith('//X')) {
+      //     let que_unique_id = $(element).text().split("\t"); // Convert string to arrays
+      //     console.log('que_unique_id: ', que_unique_id);
+      //     let fomatted_que_id = que_unique_id[0].replace('//', 'M') + "_" + que_unique_id[1].replace('//', 'S'); // Make quesion id
+      //     (index > 0) && (tmpArr += '</label></div>');
+      //     finalArr.push(tmpArr);
+      //     tmpArr = `<hr><div id="${fomatted_que_id}_div">`;
+      //     tmpArr += `<input type="checkbox" onclick="getSelectedCheckboxValues()" id="${fomatted_que_id}">`;
+      //     tmpArr += `<label for="${fomatted_que_id}"><span style="font-size: 25px;margin-left: auto;float: right;">(${que_unique_id[0].replace('//', '')})</span>`;
+      //     (!$(element).text().startsWith('//')) && (tmpArr += fullPTag);
+      // } else {
+      //     // Push only question
+      //     (!$(element).text().startsWith('//') && !$(element).hasClass("Quest-copy")) && (tmpArr += fullPTag);
+      //     // Push question with answer
+      //     // (!$(element).text().startsWith('//')) && (tmpArr += fullPTag);
+      //     (($('p').length - 1) === index) && (finalArr.push(tmpArr));
+      // }
+    });
+
+    if (finalArr.length) {
+      bodyHTML += `<div id="PHY_EM_${chapterNo}_${sectionNo}" class="${$(
+        "div"
+      ).attr("class")}">`;
+      bodyHTML += `<div style="background-color:red;" class="secinner" >Section ${sectionNo}</div>`;
+      // bodyHTML = `<hr><div id="${fomatted_que_id}_div">`;
+      bodyHTML += `<div id="PHY_EM_${chapterNo}_${sectionNo}_QUESTION_ROOT" class="queinner" >`;
+
+      finalArr.forEach(function (v) {
+        bodyHTML += v;
+      });
+      if (
+        sectionNo ==
+        sectionFileArr[sectionFileArr.length - 1].split("/")[1].substring(4, 7)
+      ) {
+        bodyHTML += `</div></div>`;
+      }
+      bodyHTML += "</div></div></div>";
+      nextItem();
+    }
+  },
+  (loopSucc) => {
+    let file = fs.createWriteStream(
+      "./output/12th_Maths_EM/12th_SCI_MATHS_EM.html"
+    );
+    file.write(headerHTML + bodyHTML + footerHTML);
+    file.end();
+    if (imageFolderPathArr.length) {
+      imageFolderPathArr.forEach((imageFolderPath) => {
+        const sourceDirectory = imageFolderPath.oldFolderPath + "/image";
+        const destinationDirectory = imageFolderPath.newFolderPath;
+
+        fsExtra.copy(sourceDirectory, destinationDirectory, (err) => {
+          if (err) {
+            console.error("Error copying directory:", err);
+          } else {
+            console.log("Directory successfully copied!");
+          }
+        });
+      });
+    }
+  }
+);

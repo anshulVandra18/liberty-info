@@ -1,0 +1,26 @@
+Auth Flow (parent/student)
+
+- signup API changes 
+    - generating authtoken based on child 
+    - gender
+    - spouse_first_name
+    - spouse_last_name
+    - spouse_gender
+- Add Child (New API)    
+    - gender
+    - state
+    - city
+    - academic_year
+- Edit child (New API) (id based edit API)
+- login response changes
+    - generating authtoken based on child 
+    - gender
+    - spouse_first_name
+    - spouse_last_name
+    - spouse_gender
+    - spouse_verified
+    - child:[] (if child array is empty then parent won't be able to go in the app need to add atleast one child )     
+- child switch API
+    - child id 
+    - based on child id generate a new authtoken and update in the user_session table
+- Profile API changes

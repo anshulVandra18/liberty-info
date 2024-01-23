@@ -1,0 +1,82 @@
+# Template APIs
+
+[ TA - Templates ]
+------------------------------------------------------
+1) Create bulk Template (/teacher/question/template)
+------------------------------------------------------
+## Request Body
+
+templates: [{
+  "local_db_id" : 1, // Mobile id
+  "title": "weekly test",
+  "teacher_id" : 1, 
+  "book_id": 0,
+  "book_title":"Mathematics - 10th - GSEB - Eng",
+  "total_marks": 30,
+  "list_json": [
+    {
+      "mark": 1,
+      "no_of_que": 0
+    },
+    {
+      "mark": 2,
+      "no_of_que": 0
+    }
+  ],
+  "template_json": {}
+}]
+
+## Response Body
+
+data: [{
+ "local_db_id" : 2
+ "id":21 // Backend database id
+}],
+message: "Templates Created Successfully"
+
+------------------------------------------------------
+2) Create Bulk Edit Template 
+------------------------------------------------------
+Request Body
+
+templates: [{
+  "id":1,
+  "title": "weekly test",
+  "book_id": 0,
+  "teacher_id" : 1, 
+  "book_title":"Mathematics - 10th - GSEB - Eng",
+  "total_marks": 30,
+  "list_json": [
+    {
+      "mark": 1,
+      "no_of_que": 0
+    },
+    {
+      "mark": 2,
+      "no_of_que": 0
+    }
+  ],
+  "template_json": {}
+}]
+
+Response 
+
+data:[
+  {"id":1,
+   "title": "weekly test",
+   "book_id": 0,
+   "book_title":"Mathematics - 10th - GSEB - Eng",
+   "total_marks": 30,
+   "list_json": [
+     {
+       "mark": 1,
+       "no_of_que": 0
+     },
+     {
+       "mark": 2,
+       "no_of_que": 0
+     }
+   ],
+   "template_json": {}
+  }
+]
