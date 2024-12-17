@@ -24,11 +24,12 @@ tbl_mock_test {
 
 tbl_mock_test_student {
 	id integer pk increments
-	student_id integer > undefined.undefined
+	student_id integer > childid
 	mock_test_id integer > tbl_mock_test.id
 	test_start_time timestamp
-	result_json JSONB
-	marks integer
+	result_json JSONB nullable 
+	marks integer nullable 
+	status - (0 - ongoing , 1 - attempted)
 	time_taken text
 	created_at timestamp
 	updated_at timestamp

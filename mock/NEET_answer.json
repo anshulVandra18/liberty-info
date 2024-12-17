@@ -1,0 +1,186 @@
+{
+  "type": "NEET",
+  "name": "Neet Mock Test",
+  "time_taken": "02:54:00",
+  "total_que": 200,
+  "needed_que": 180,
+  "total_marks": 720,
+  "correct": 0,
+  "wrong": 0,
+  "not_attempted": 0,
+  "obtained_marks": 0,
+  "sub": [
+    {
+      "title": "Physics",
+      "marks": 180,
+      "total_que": 45,
+      "correct": 0,
+      "wrong": 0,
+      "not_attempted": 10,
+      "obt_marks": 14,
+      "section": [
+        {
+          "title": "A",
+          "total_que": 35,
+          "needed_que": 35,
+          "atmd_que": 0,
+          "last_viewed_que": 1,
+          "questions": [
+            {
+              "qno": 1,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        },
+        {
+          "title": "B",
+          "total_que": 15,
+          "needed_que": 10,
+          "atmd_que": 0,
+          "last_viewed_que": 36,
+          "questions": [
+            {
+              "qno": 36,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Chemistry",
+      "marks": 180,
+      "total_que": 45,
+      "correct": 0,
+      "wrong": 0,
+      "not_attempted": 10,
+      "obt_marks": 14,
+      "section": [
+        {
+          "title": "A",
+          "total_que": 35,
+          "needed_que": 35,
+          "atmd_que": 0,
+          "last_viewed_que": 51,
+          "questions": [
+            {
+              "qno": 1,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        },
+        {
+          "title": "B",
+          "total_que": 15,
+          "needed_que": 10,
+          "atmd_que": 0,
+          "last_viewed_que": 86,
+          "questions": [
+            {
+              "qno": 36,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Botany",
+      "marks": 180,
+      "total_que": 45,
+      "correct": 0,
+      "wrong": 0,
+      "not_attempted": 10,
+      "obt_marks": 14,
+      "section": [
+        {
+          "title": "A",
+          "total_que": 35,
+          "needed_que": 35,
+          "atmd_que": 0,
+          "last_viewed_que": 51,
+          "questions": [
+            {
+              "qno": 1,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        },
+        {
+          "title": "B",
+          "total_que": 15,
+          "needed_que": 10,
+          "atmd_que": 0,
+          "last_viewed_que": 86,
+          "questions": [
+            {
+              "qno": 36,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Zoology",
+      "marks": 180,
+      "total_que": 45,
+      "correct": 0,
+      "wrong": 0,
+      "not_attempted": 10,
+      "obt_marks": 14,
+      "section": [
+        {
+          "title": "A",
+          "total_que": 35,
+          "needed_que": 35,
+          "atmd_que": 0,
+          "last_viewed_que": 51,
+          "questions": [
+            {
+              "qno": 1,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        },
+        {
+          "title": "B",
+          "total_que": 15,
+          "needed_que": 10,
+          "atmd_que": 0,
+          "last_viewed_que": 86,
+          "questions": [
+            {
+              "qno": 36,
+              "cor_ans": "C",
+              "sel_ans": "",
+              "sel_ans_id": "",
+              "result": "CA/WA/NA"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

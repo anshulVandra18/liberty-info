@@ -24,3 +24,48 @@ Auth Flow (parent/student)
     - child id 
     - based on child id generate a new authtoken and update in the user_session table
 - Profile API changes
+
+Sign up 
+
+- validate-user api changes with 
+    role : 2
+    email : "user@example.com",
+    phone_number : "+91-98989054",
+    spouse_phone_number : "+91-98989054",
+
+BE needs to check for below conditions
+- if you get email then it should be unique for tbl_parent
+- phone_number exist in tbl_parent
+- spouse_phone_number exist in tbl_parent
+
+response : {
+    email : true,
+    phone_number : true,
+    spouse_phone_number : true,
+    is_spouse_verified : false
+}
+
+- if email || phone_number || spouse_phone_number any of them is true then need to show error
+
+- after successful signup BE will send below keys 
+current_active_parent => which parent signed up 
+child => [] 
+ - if empty then FE need to show the add child screen
+ - if array has value then signup response will have this 2 key  
+    - current_active_parent = phone_number
+    - current_active_child = id
+
+Login     
+
+- validate-user api changes with 
+    role : 2
+    phone_number : "+91-98989054",
+
+response : {
+    email : true,
+    phone_number : true,
+    spouse_phone_number : true,
+    is_spouse_verified : false
+}
+
+if 

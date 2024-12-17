@@ -59,7 +59,7 @@
 
 Interaction between React Native and WEB
 
-1) saveAndNext(question_root_id)  native -> web 
+1) onNextClick(current_question_root_id,next_question_root_id)  native -> web 
     - When user presses save and next button mobile will inform webview (Basically at this time JSON needs to be updated with selected answer)
 2) displayQuestion(question_root_id , selected_answer , language ) native -> web
     - Whenever user change the question or question's language
